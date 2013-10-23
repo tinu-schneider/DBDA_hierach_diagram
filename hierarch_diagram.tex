@@ -1,4 +1,3 @@
-
 % Hierarchical diagrams, DBDA
 % ---------------------------------
 % Tinu Schneider, October 2013
@@ -65,7 +64,7 @@
        	boxLegend/.style = {align = left, text width = 4cm, xshift = 2.2cm, 
        				yshift = 1.2cm,  font = \scriptsize, color = black!70},
     	allArrows/.style = {font = \footnotesize, color = black!80, text = black},
-  	arrSnake/.style = {allArrows, >=stealth', ->, shorten >= 7pt, line join = round, decorate, 
+    	arrSnake/.style = {allArrows, >=stealth', ->, shorten >= 7pt, line join = round, decorate, 
   				decoration={snake, segment length = 10, amplitude = 1.2,
         					post = lineto, post length = 10pt} },
      	implies/.style  = {allArrows, -implies, double, double equal sign distance, shorten >= 4pt}, 
@@ -114,21 +113,21 @@
    	
   	% Legend; needs improvement...
    	\node [boxLegend] at ( current bounding box.south west) (legendTitle) 
-   			{
-   			\begin{tabular}{ll}
-   				$A, \dots, Z$  & Constants \\
-   				$a, \dots, z$ & Variables \\
-   				$\alpha, \dots, \omega$ & Parameters \\ %[1ex]
-   				
-				 & deterministic \\[-0.4ex]
-				 & relation \\ %[1ex]
-				 
-				 & stochastic \\[-0.4ex]
-				 & relation \\ %[1ex]
-				 
-				\multicolumn{2}{l}{$i, j = 1, 2, 3, \dots $} \\
-   			\end{tabular}
-   		};
+   		{%
+   		\begin{tabular}{ll}
+   			$A, \dots, Z$  & Constants \\
+   			$a, \dots, z$ & Variables \\
+   			$\alpha, \dots, \omega$ & Parameters \\ %[1ex]
+   			
+			 & deterministic \\[-0.4ex]
+			 & relation \\ %[1ex]
+			 
+			 & stochastic \\[-0.4ex]
+			 & relation \\ %[1ex]
+			 
+			\multicolumn{2}{l}{$i, j = 1, 2, 3, \dots $} \\
+   		\end{tabular}
+   	};
    				
    	\def\xLegendArrowLeft{-6}
    	\def\xLegendArrowRight{-4.7}  
