@@ -1,5 +1,4 @@
 
-
 % Hierarchical diagrams, DBDA
 % ---------------------------------
 % Tinu Schneider, October 2013
@@ -29,15 +28,13 @@
 \newcommand{\normalGreek}[2]{\funGreek{#1}{#2}{N}{Normal}} 
 \newcommand{\gammaGreek} [2]{\funGreek{#1}{#2}{G}{Gamma}}   
 
-\newcommand{\funGreek}[4]{$\mathcal{#3}$\large$(#1, #2)$ 
-   						 	\includegraphics*[scale = 0.25]{#4.png} }				 	 
+\newcommand{\funGreek}[4]{$\mathcal{#3}$\large$(#1, #2)$ \includegraphics*[scale = 0.25]{#4.png} }				 	 
    			
 % letters (constants)  
 \newcommand{\normalLetters}[2]{\funLetters{#1}{#2}{N}{Normal}} 
 \newcommand{\gammaLetters} [2]{\funLetters{#1}{#2}{G}{Gamma}}   
 
-\newcommand{\funLetters}[4]{$\mathcal{#3}(#1, #2)$
-   						 	\includegraphics*[scale = 0.25]{#4.png} }	 
+\newcommand{\funLetters}[4]{$\mathcal{#3}(#1, #2)$ \includegraphics*[scale = 0.25]{#4.png} }	 
   						 	
    						 	
    						 	  						 	 
@@ -56,24 +53,25 @@
    	node distance = \midY cm, on grid,
    	inner frame ysep = 2ex,
    	inner frame ysep = 3ex,
-    box/.style = { rectangle, 
-       				%draw,
-       				rounded corners, 
-       				color = lightgray, 
-       				text = black,  
-       				inner sep = 0pt, 
-       				minimum width = \midX cm,
-       				text width = 2.5cm, 
-       				align = center},
-       	boxLegend/.style = {box, align = left, text width = 5cm},
-    allArrows/.style = {font = \footnotesize, color = black!80, text = black},
-  		arrSnake/.style = {allArrows, >=stealth', ->, shorten >= 7pt, line join = round, decorate, 
-  							decoration={snake, segment length = 10, amplitude = 1.2,
-  		    	  						post = lineto, post length = 10pt} },
-  	   	implies/.style  = {allArrows, -implies, double, double equal sign distance, shorten >= 4pt}, % double distance=0.25cm
-  	   	labArrow/.style = {pos = 0.36},
-  	   	labArrowLegend/.style = {labArrow, above, font = \tiny, inner sep = 3pt}
-  		] 		   		
+    	box/.style = { rectangle, 
+	       		%draw,
+	       		rounded corners, 
+	       		color = lightgray, 
+	       		text = black,  
+	       		inner sep = 0pt, 
+	       		minimum width = \midX cm,
+	       		text width = 2.5cm, 
+	       		align = center},
+       	boxLegend/.style = {align = left, text width = 4cm, xshift = 2.2cm, 
+       				yshift = 1.2cm,  font = \scriptsize, color = black!70},
+    	allArrows/.style = {font = \footnotesize, color = black!80, text = black},
+  	arrSnake/.style = {allArrows, >=stealth', ->, shorten >= 7pt, line join = round, decorate, 
+  				decoration={snake, segment length = 10, amplitude = 1.2,
+        					post = lineto, post length = 10pt} },
+     	implies/.style  = {allArrows, -implies, double, double equal sign distance, shorten >= 4pt}, 
+     	labArrow/.style = {pos = 0.36},
+     	labArrowLegend/.style = {labArrow, above, font = \tiny, inner sep = 3pt}
+  	] 		   		
    		
    	% 'Boxes' for the distributions	and equation(s)
    	% starting at the bottom				
@@ -82,7 +80,7 @@
    	\node [box, above = of yij, yshift = -0.2cm] (omega) {\normalGreek{\omega_{j|i}}{\lambda} } ;
    	
    	\node [box, above = of omega, xshift=-\smallX cm] (linMod)   
-   					{ \large $ \underbrace{\varphi_i + \xi_i \cdot x_{j|i}}{}$ } ;
+   			{ \large $ \underbrace{\varphi_i + \xi_i \cdot x_{j|i}}{}$ } ;
     	
    	\node [box, above = of omega,  xshift =  \bigX cm, yshift = \smallY cm] (proLambda) {\gammaLetters{K}{I} } ;
     	
@@ -107,31 +105,30 @@
    	\path (proPhi.south)     edge[arrSnake] node[right, labArrow] {$\ i$} (linMod.160);       	 	
    	\path (proXi.south)  	 edge[arrSnake] node[left, labArrow]  {$i\quad $} (linMod.75); 
    	      	
-    \path (proKappa.south)   edge[arrSnake] (proPhi.110);       	 	
+    	\path (proKappa.south)   edge[arrSnake] (proPhi.110);       	 	
    	\path (proDelta.south)   edge[arrSnake] (proPhi.49);  
    	
    	\path (proZeta.south)    edge[arrSnake] (proXi.110);       	 	
    	\path (proGamma.south)   edge[arrSnake] (proXi.49);    	
    	
    	
-  	% Legend
-   	\node [align = left, text width = 4cm, yshift = 1.2cm, xshift = 2.2cm, font = \scriptsize, color = black!70] at ( current bounding box.south west) (legendTitle) 
+  	% Legend; needs improvement...
+   	\node [boxLegend] at ( current bounding box.south west) (legendTitle) 
    			{
-   				%\underline{Legend} \\
-   				\begin{tabular}{ll}
-   					$A, \dots, Z$  & Constants \\
-   					$a, \dots, z$ & Variables \\
-   					$\alpha, \dots, \omega$ & Parameters \\ %[1ex]
-   					
-					 & deterministic \\[-0.4ex]
-					 & relation \\ %[1ex]
-					 
-					 & stochastic \\[-0.4ex]
-					 & relation \\ %[1ex]
-					 
-					\multicolumn{2}{l}{$i, j = 1, 2, 3, \dots $} \\
-   				\end{tabular}
-   			};
+   			\begin{tabular}{ll}
+   				$A, \dots, Z$  & Constants \\
+   				$a, \dots, z$ & Variables \\
+   				$\alpha, \dots, \omega$ & Parameters \\ %[1ex]
+   				
+				 & deterministic \\[-0.4ex]
+				 & relation \\ %[1ex]
+				 
+				 & stochastic \\[-0.4ex]
+				 & relation \\ %[1ex]
+				 
+				\multicolumn{2}{l}{$i, j = 1, 2, 3, \dots $} \\
+   			\end{tabular}
+   		};
    				
    	\def\xLegendArrowLeft{-6}
    	\def\xLegendArrowRight{-4.7}  
@@ -142,37 +139,6 @@
    	\path (\xLegendArrowLeft, \yLegendDouble)  edge[implies, black!70]    (\xLegendArrowRight, \yLegendDouble);    	   	
    	\path (\xLegendArrowLeft, \yLegendSnake)   edge[arrSnake, black!70]   (\xLegendArrowRight, \yLegendSnake);    	
 
-   	
-   	
-   	
-%   	% Legend
-%   	\node [align = left, text width = 4cm, yshift = 1.2cm, xshift = 2.2cm, font = \scriptsize, color = black!70] at ( current bounding box.south west) (legendTitle) 
-%   			{
-%   				%\underline{Legend} \\
-%   				\begin{tabular}{ll}
-%   					$A, \dots, Z$  & Constants \\
-%   					$a, \dots, z$ & Variables \\
-%   					$\alpha, \dots, \omega$ & Parameters \\[1ex]
-%   					 & deterministic, \\
-%   					 & iterate over $j|i$ \\[0.5ex]
-%   					 & stochastic, \\
-%   					 & iterate over $i$ \\
-%   				\end{tabular}
-%   				};
-%   				
-%   	\def\xLegendArrowLeft{-6}
-%   	\def\xLegendArrowRight{-4.7}   	
-%   	\def\yLegendDouble{0.75}
-%   	\def\yLegendSnake{0.05}
-%   	
-%   	\path (\xLegendArrowLeft, \yLegendDouble)  edge[implies, black!70]    (\xLegendArrowRight, \yLegendDouble);    	   	
-%   	\path (\xLegendArrowLeft, \yLegendSnake)   edge[arrSnake, black!70]   (\xLegendArrowRight, \yLegendSnake);    	
-
-
 \end{tikzpicture}
-
-
-
-
 
 \end{document} % ------------------------------ %
