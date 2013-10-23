@@ -8,7 +8,7 @@ original source: [John K. Kruschke](http://doingbayesiandataanalysis.blogspot.ch
 Files
 --------
 * plot_PNGs_of_MiniPlots.R: Draw the 'pictograms' of  different distributions (normal, gamma, beta)
-* hierarch_diagram.tex: The diagram, LaTeX and tikz
+* hierarch_diagram.tex: The diagram, written in LaTeX and TikZ
 
 
 Author
