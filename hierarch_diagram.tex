@@ -95,20 +95,20 @@
    		    	
    		    	
    	% Arrows	    	
-   	\path (omega.south)      edge[arrSnake] node[right, labArrow] {$j|i$} (yij);
+   	\draw[arrSnake] (omega.south) --  node[right, labArrow] {$j|i$} (yij);
    	
-   	\path (linMod.south)     edge[implies] node[right, labArrow] {$\ j|i$} (omega.110);
+   	\draw[implies]  (linMod.south) -- node[right, labArrow] {$\ j|i$} (omega.110);
    	
-   	\path (proLambda.south)  edge[arrSnake] (omega.38);   
-   	
-   	\path (proPhi.south)     edge[arrSnake] node[right, labArrow] {$\ i$} (linMod.160);       	 	
-   	\path (proXi.south)  	 edge[arrSnake] node[left, labArrow]  {$i\quad $} (linMod.75); 
-   	      	
-    	\path (proKappa.south)   edge[arrSnake] (proPhi.110);       	 	
-   	\path (proDelta.south)   edge[arrSnake] (proPhi.49);  
-   	
-   	\path (proZeta.south)    edge[arrSnake] (proXi.110);       	 	
-   	\path (proGamma.south)   edge[arrSnake] (proXi.49);    	
+    \draw[arrSnake] (proLambda.south) -- (omega.38);   
+   
+    \draw[arrSnake] (proPhi.south) -- node[right, labArrow] {$\ i$} (linMod.160);       	 	
+    \draw[arrSnake] (proXi.south) --  node[left, labArrow]  {$i\quad $} (linMod.75); 
+         	
+    \draw[arrSnake] (proKappa.south) -- (proPhi.110);       	 	
+    \draw[arrSnake] (proDelta.south) -- (proPhi.49);  
+   
+    \draw[arrSnake] (proZeta.south) -- (proXi.110);       	 	
+    \draw[arrSnake] (proGamma.south) -- (proXi.49);    	
    	
    	
   	% Legend; needs improvement...
@@ -135,8 +135,8 @@
    	\def\yLegendDouble{0.95}
    	\def\yLegendSnake{0.35}
    	
-   	\path (\xLegendArrowLeft, \yLegendDouble)  edge[implies, black!70]    (\xLegendArrowRight, \yLegendDouble);    	   	
-   	\path (\xLegendArrowLeft, \yLegendSnake)   edge[arrSnake, black!70]   (\xLegendArrowRight, \yLegendSnake);    	
+   	\draw[implies, black!70]  (\xLegendArrowLeft, \yLegendDouble) -- (\xLegendArrowRight, \yLegendDouble);    	   	
+    \draw[arrSnake, black!70] (\xLegendArrowLeft, \yLegendSnake) -- (\xLegendArrowRight, \yLegendSnake);    	
 
 \end{tikzpicture}
 
