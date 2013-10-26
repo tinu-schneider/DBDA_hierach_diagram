@@ -5,9 +5,12 @@ DBDA-style diagram for hierarchical models, the classic "[rats](http://www.mrc-b
 original source: [John K. Kruschke](http://doingbayesiandataanalysis.blogspot.ch/2013/10/diagrams-for-hierarchical-models-we.html)
 
 
+![DBDA diagram](https://raw.github.com/tinu-schneider/DBDA_hierach_diagram/master/Example.png)
+
+
 Files
 --------
-* plot_PNGs_of_MiniPlots.R: Draw the 'pictograms' of  different distributions (normal, gamma, beta)
+* plot_PNGs_of_MiniPlots.R: Draw the 'pictograms' of  different distributions (normal, gamma, beta). They are saved in `MiniPlots/`
 * hierarch_diagram.tex: The diagram, written in LaTeX and TikZ
 
 
