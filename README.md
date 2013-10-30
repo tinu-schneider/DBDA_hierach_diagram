@@ -1,6 +1,6 @@
 ## Diagram for hierarchical models
 
-An example of a DBDA-style diagram for hierarchical models, the classic "[rats](http://www.mrc-bsu.cam.ac.uk/bugs/documentation/exampVol1/node3.html)" example from BUGS, motivated by [John K. Kruschke's post](http://doingbayesiandataanalysis.blogspot.ch/2013/10/diagrams-for-hierarchical-models-we.html).
+An example of an DBDA-style diagram for hierarchical models, the classic "[rats](http://www.mrc-bsu.cam.ac.uk/bugs/documentation/exampVol1/node3.html)" example from BUGS, motivated by [John K. Kruschke's post](http://doingbayesiandataanalysis.blogspot.ch/2013/10/diagrams-for-hierarchical-models-we.html).
 
 The Code is written in LaTeX and TikZ and uses 'distrograms' (pictograms of the distributions, a word-creation of Rasmus Bååth) to illustrate the underlying distributions.
 
@@ -17,6 +17,7 @@ The Code is written in LaTeX and TikZ and uses 'distrograms' (pictograms of the 
 John K. Kruschke motivated me to refactor the first prototype.
 
 Rasmus Bååth wrote a sophisticated script to draw 'distrograms' for many different distributions and save them as .png and .svg. His code is on [GitHub](https://github.com/rasmusab/distribution_diagrams). I used his 'Normal' and 'Gamma' with some minor changes. 
+He also created templates for  LibreOffice Draw, see his [blog post](http://www.sumsar.net/blog/2013/10/diy-kruschke-style-diagrams/).
 
 
 
