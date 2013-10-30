@@ -4,7 +4,6 @@ An example of a DBDA-style diagram for hierarchical models, the classic "[rats](
 
 The Code is written in LaTeX and TikZ and uses 'distrograms' (pictograms of the distributions, a word-creation of Rasmus Bååth) to illustrate the underlying distributions.
 
-
 ![DBDA diagram](https://raw.github.com/tinu-schneider/DBDA_hierach_diagram/master/Example.png)
 
 
