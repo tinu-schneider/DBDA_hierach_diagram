@@ -1,0 +1,158 @@
+% Hierarchical diagrams, DBDA
+% ---------------------------------
+% Tinu Schneider, October 2013
+
+
+\documentclass[12pt]{article}
+
+\usepackage[T1]{fontenc} 
+\usepackage[utf8]{inputenc}
+
+\usepackage[margin = 20mm, nohead, nofoot]{geometry} 
+
+\usepackage{tikz}
+    \usetikzlibrary{positioning, arrows, backgrounds, decorations, 
+    				decorations.pathmorphing, decorations.markings}
+  
+\graphicspath{{./MiniPlots/}}
+    
+\pagestyle{empty}
+
+\usepackage{tgheros} 
+\renewcommand*\familydefault{\sfdefault} 
+	
+
+% Macros for the distributions
+% greek
+\newcommand{\normalGreek}[1]{\greek{#1}{Normal} } 
+\newcommand{\gammaGreek} [1]{\greek{#1}{Gamma} }   
+
+\newcommand{\greek}[2]{\large$#1$\\ \includegraphics*[scale = 0.25]{#2_Rasmus.png} }				 	 
+   			
+% letters (constants)  
+\newcommand{\normalLetters}[1]{\letters{#1}{Normal}} 
+\newcommand{\gammaLetters} [1]{\letters{#1}{Gamma}}   
+
+\newcommand{\letters}[2]{$#1$\\ \includegraphics*[scale = 0.25]{#2_Rasmus.png} }
+	
+
+  						 	
+   						 	
+   						 	  						 	 
+\begin{document} % ------------------------------ %
+
+% distances
+\def\smallY{0.25}
+\def\midY{2.25}
+
+\def\smallX{1.2}
+\def\midX{1.5}
+\def\bigX{2.7}
+
+
+\begin{tikzpicture}[ framed, on grid,
+   	node distance = \midY cm, 
+   	inner frame xsep = 2.5ex,
+   	inner frame ysep = 3.0ex,
+    	box/.style = { rectangle,
+	       		color = lightgray, 
+	       		text = black,  
+	       		text width = 2.0cm, 
+	       		align = center},
+	    boxFramed/.style = {box, 
+	    		draw, % comment this line out, if you dont want the frames
+	    		inner sep = 3pt},
+	    boxFramedRound/.style = {boxFramed, rounded corners = 8pt},
+	    boxFormula/.style = {box, inner sep = 1pt},
+       	boxLegend/.style = {align = left, 
+       			text width = 4cm, 
+       			xshift = 2.2cm, 
+       			yshift = 1.2cm,  
+       			font = \scriptsize, 
+       			color = black!70},
+    	allArrows/.style = {font = \footnotesize, 
+    			color = black!80, text = black},
+    	arrSnake/.style = {allArrows, 
+    			>=stealth', 
+    			->, 
+    			shorten >= 1pt, 
+    			line join = round, 
+    			decorate, 
+  				decoration={snake, segment length = 10, 
+  							amplitude = 1.2, post = lineto, 
+  							post length = 4pt} },
+     	implies/.style  = {allArrows, -implies, double, 
+     			double equal sign distance, shorten >= 1pt}, 
+     	labArrow/.style = {pos = 0.39},
+     	labArrowLegend/.style = {labArrow, above, font = \tiny, inner sep = 3pt}
+  	] 		   		
+   		
+   	% nodes for the distributions and equation(s)
+   	% starting at the bottom				
+	\node [box] (yij) {\Large $y_{j|i}$};
+
+   	\node [boxFramedRound, above = of yij, yshift = -0.2cm] (omega) {\normalGreek{\omega_{j|i}, \lambda} } ;
+   	
+   	\node [boxFormula, above = of omega, xshift=-\smallX cm, text width = 2.5 cm] (linMod)   
+   			{ \large $ \underbrace{\varphi_i + \xi_i \cdot x_{j|i}}{}$ } ;
+    	
+   	\node [boxFramed, above = of omega,  xshift =  \bigX cm, yshift = \smallY cm] (proLambda) {\gammaLetters{K, I} } ;
+    	
+   	\node [boxFramedRound, above = of linMod, xshift = -\bigX cm]   (proPhi)   {\normalGreek{\kappa, \delta} };
+   	\node [boxFramedRound, above = of linMod, xshift =  \bigX cm]   (proXi)    {\normalGreek{\zeta, \gamma} } ;
+   	
+   	\node [boxFramed, above = of proPhi, xshift = -\smallX cm] (proKappa) {\normalLetters{M, H} } ;
+   	\node [boxFramed, above = of proPhi, xshift =  \smallX cm] (proDelta) {\gammaLetters{K, I} } ;    
+   	
+   	\node [boxFramed, above = of proXi,  xshift = -\smallX cm] (proZeta)  {\normalLetters{M, H} } ;
+   	\node [boxFramed, above = of proXi,  xshift =  \smallX cm] (proGamma) {\gammaLetters{K, I} } ;        	
+   	
+   		    	
+   		    	
+   	% Arrows	    	
+   	\draw[arrSnake] (omega.south) --  node[right, labArrow] {$j|i$} (yij);
+  	
+    \draw[implies]  (linMod.south) -- node[right, labArrow] {$\ j|i$} (omega.125);
+   
+    \draw[arrSnake] (proLambda.south) -- (omega.40);   
+    
+    \draw[arrSnake] (proPhi.south) -- node[right, labArrow] {$\ i$} (linMod.163);       	 	
+    \draw[arrSnake] (proXi.south) --  node[left,  labArrow] {$i\quad $} (linMod.62); 
+            	
+    \draw[arrSnake] (proKappa.south) -- (proPhi.122);       	 	
+    \draw[arrSnake] (proDelta.south) -- (proPhi.57);  
+    
+    \draw[arrSnake] (proZeta.south) -- (proXi.122);       	 	
+    \draw[arrSnake] (proGamma.south) -- (proXi.57);    	
+   	
+   	
+  	% Legend; needs improvement...
+   	\node [boxLegend] at ( current bounding box.south west) (legendTitle) 
+   		{%
+   		\begin{tabular}{ll}
+   			$A, \dots, Z$  & Constants \\
+   			$a, \dots, z$ & Variables \\
+   			$\alpha, \dots, \omega$ & Parameters \\ %[1ex]
+   			
+			 & deterministic \\[-0.4ex]
+			 & relation \\ %[1ex]
+			 
+			 & stochastic \\[-0.4ex]
+			 & relation \\ %[1ex]
+			 
+			\multicolumn{2}{l}{$i, j = 1, 2, 3, \dots $} \\
+   		\end{tabular}
+   	};
+   				
+   	\def\xLegendArrowLeft{-5.75}
+   	\def\xLegendArrowRight{-4.75}  
+   	 	
+   	\def\yLegendDouble{0.83}
+   	\def\yLegendSnake{0.25}
+   	
+   	\draw[implies, black!70]  (\xLegendArrowLeft, \yLegendDouble) -- (\xLegendArrowRight, \yLegendDouble);    	   	
+    \draw[arrSnake, black!70] (\xLegendArrowLeft, \yLegendSnake) -- (\xLegendArrowRight, \yLegendSnake);    	
+
+\end{tikzpicture}
+
+\end{document} % ------------------------------ %
