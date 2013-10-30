@@ -24,16 +24,18 @@
 
 % Macros for the distributions
 % greek
-\newcommand{\normalGreek}[2]{\funGreek{#1}{#2}{N}{Normal}} 
-\newcommand{\gammaGreek} [2]{\funGreek{#1}{#2}{G}{Gamma}}   
+\newcommand{\normalGreek}[1]{\greek{#1}{Normal} } 
+\newcommand{\gammaGreek} [1]{\greek{#1}{Gamma} }   
 
-\newcommand{\funGreek}[4]{$\mathcal{#3}$\large$(#1, #2)$ \includegraphics*[scale = 0.25]{#4.png} }				 	 
+\newcommand{\greek}[2]{\large$#1$\\ \includegraphics*[scale = 0.25]{#2_Rasmus.png} }				 	 
    			
 % letters (constants)  
-\newcommand{\normalLetters}[2]{\funLetters{#1}{#2}{N}{Normal}} 
-\newcommand{\gammaLetters} [2]{\funLetters{#1}{#2}{G}{Gamma}}   
+\newcommand{\normalLetters}[1]{\letters{#1}{Normal}} 
+\newcommand{\gammaLetters} [1]{\letters{#1}{Gamma}}   
 
-\newcommand{\funLetters}[4]{$\mathcal{#3}(#1, #2)$ \includegraphics*[scale = 0.25]{#4.png} }	 
+\newcommand{\letters}[2]{$#1$\\ \includegraphics*[scale = 0.25]{#2_Rasmus.png} }
+	
+
   						 	
    						 	
    						 	  						 	 
@@ -48,67 +50,80 @@
 \def\bigX{2.7}
 
 
-\begin{tikzpicture}[ framed,
-   	node distance = \midY cm, on grid,
-   	inner frame ysep = 2ex,
-   	inner frame ysep = 3ex,
-    	box/.style = { rectangle, 
-	       		%draw,
-	       		rounded corners, 
+\begin{tikzpicture}[ framed, on grid,
+   	node distance = \midY cm, 
+   	inner frame xsep = 2.5ex,
+   	inner frame ysep = 3.0ex,
+    	box/.style = { rectangle,
 	       		color = lightgray, 
 	       		text = black,  
-	       		inner sep = 0pt, 
-	       		minimum width = \midX cm,
-	       		text width = 2.5cm, 
+	       		text width = 2.0cm, 
 	       		align = center},
-       	boxLegend/.style = {align = left, text width = 4cm, xshift = 2.2cm, 
-       				yshift = 1.2cm,  font = \scriptsize, color = black!70},
-    	allArrows/.style = {font = \footnotesize, color = black!80, text = black},
-    	arrSnake/.style = {allArrows, >=stealth', ->, shorten >= 7pt, line join = round, decorate, 
-  				decoration={snake, segment length = 10, amplitude = 1.2,
-        					post = lineto, post length = 10pt} },
-     	implies/.style  = {allArrows, -implies, double, double equal sign distance, shorten >= 4pt}, 
-     	labArrow/.style = {pos = 0.36},
+	    boxFramed/.style = {box, 
+	    		% draw, % comment this line out, if you dont want the frames
+	    		inner sep = 0pt},
+	    boxFramedRound/.style = {boxFramed, rounded corners = 8pt},
+	    boxFormula/.style = {box, inner sep = 1pt},
+       	boxLegend/.style = {align = left, 
+       			text width = 4cm, 
+       			xshift = 2.2cm, 
+       			yshift = 1.2cm,  
+       			font = \scriptsize, 
+       			color = black!70},
+    	allArrows/.style = {font = \footnotesize, 
+    			color = black!80, text = black},
+    	arrSnake/.style = {allArrows, 
+    			>=stealth', 
+    			->, 
+    			shorten >= 2pt, 
+    			line join = round, 
+    			decorate, 
+  				decoration={snake, segment length = 10, 
+  							amplitude = 1.2, post = lineto, 
+  							post length = 4pt} },
+     	implies/.style  = {allArrows, -implies, double, 
+     			double equal sign distance, shorten >= 1pt}, 
+     	labArrow/.style = {pos = 0.39},
      	labArrowLegend/.style = {labArrow, above, font = \tiny, inner sep = 3pt}
   	] 		   		
    		
-   	% 'Boxes' for the distributions	and equation(s)
+   	% nodes for the distributions and equation(s)
    	% starting at the bottom				
 	\node [box] (yij) {\Large $y_{j|i}$};
 
-   	\node [box, above = of yij, yshift = -0.2cm] (omega) {\normalGreek{\omega_{j|i}}{\lambda} } ;
+   	\node [boxFramedRound, above = of yij, yshift = -0.2cm] (omega) {\normalGreek{\omega_{j|i}, \lambda} } ;
    	
-   	\node [box, above = of omega, xshift=-\smallX cm] (linMod)   
+   	\node [boxFormula, above = of omega, xshift=-\smallX cm, text width = 2.5 cm] (linMod)   
    			{ \large $ \underbrace{\varphi_i + \xi_i \cdot x_{j|i}}{}$ } ;
     	
-   	\node [box, above = of omega,  xshift =  \bigX cm, yshift = \smallY cm] (proLambda) {\gammaLetters{K}{I} } ;
+   	\node [boxFramed, above = of omega,  xshift =  \bigX cm, yshift = \smallY cm] (proLambda) {\gammaLetters{K, I} } ;
     	
-   	\node [box, above = of linMod, xshift = -\bigX cm]   (proPhi)   {\normalGreek{\kappa}{\delta} };
-   	\node [box, above = of linMod, xshift =  \bigX cm]   (proXi)    {\normalGreek{\zeta}{\gamma} } ;
+   	\node [boxFramedRound, above = of linMod, xshift = -\bigX cm]   (proPhi)   {\normalGreek{\kappa, \delta} };
+   	\node [boxFramedRound, above = of linMod, xshift =  \bigX cm]   (proXi)    {\normalGreek{\zeta, \gamma} } ;
    	
-   	\node [box, above = of proPhi, xshift = -\smallX cm] (proKappa) {\normalLetters{M}{H} } ;
-   	\node [box, above = of proPhi, xshift =  \smallX cm] (proDelta) {\gammaLetters{K}{I} } ;    
+   	\node [boxFramed, above = of proPhi, xshift = -\smallX cm] (proKappa) {\normalLetters{M, H} } ;
+   	\node [boxFramed, above = of proPhi, xshift =  \smallX cm] (proDelta) {\gammaLetters{K, I} } ;    
    	
-   	\node [box, above = of proXi,  xshift = -\smallX cm] (proZeta)  {\normalLetters{M}{H} } ;
-   	\node [box, above = of proXi,  xshift =  \smallX cm] (proGamma) {\gammaLetters{K}{I} } ;        	
+   	\node [boxFramed, above = of proXi,  xshift = -\smallX cm] (proZeta)  {\normalLetters{M, H} } ;
+   	\node [boxFramed, above = of proXi,  xshift =  \smallX cm] (proGamma) {\gammaLetters{K, I} } ;        	
    	
    		    	
    		    	
    	% Arrows	    	
    	\draw[arrSnake] (omega.south) --  node[right, labArrow] {$j|i$} (yij);
-   	
-       \draw[implies]  (linMod.south) -- node[right, labArrow] {$\ j|i$} (omega.110);
-       
-        \draw[arrSnake] (proLambda.south) -- (omega.38);   
-        
-        \draw[arrSnake] (proPhi.south) -- node[right, labArrow] {$\ i$} (linMod.160);       	 	
-        \draw[arrSnake] (proXi.south) --  node[left, labArrow]  {$i\quad $} (linMod.75); 
-             	
-        \draw[arrSnake] (proKappa.south) -- (proPhi.110);       	 	
-        \draw[arrSnake] (proDelta.south) -- (proPhi.49);  
-        
-        \draw[arrSnake] (proZeta.south) -- (proXi.110);       	 	
-        \draw[arrSnake] (proGamma.south) -- (proXi.49);    	
+  	
+    \draw[implies]  (linMod.south) -- node[right, labArrow] {$\ j|i$} (omega.125);
+   
+    \draw[arrSnake] (proLambda.south) -- (omega.40);   
+    
+    \draw[arrSnake] (proPhi.south) -- node[right, labArrow] {$\ i$} (linMod.163);       	 	
+    \draw[arrSnake] (proXi.south) --  node[left,  labArrow] {$i\quad $} (linMod.62); 
+            	
+    \draw[arrSnake] (proKappa.south) -- (proPhi.122);       	 	
+    \draw[arrSnake] (proDelta.south) -- (proPhi.57);  
+    
+    \draw[arrSnake] (proZeta.south) -- (proXi.122);       	 	
+    \draw[arrSnake] (proGamma.south) -- (proXi.57);    	
    	
    	
   	% Legend; needs improvement...
@@ -129,11 +144,11 @@
    		\end{tabular}
    	};
    				
-   	\def\xLegendArrowLeft{-6}
-   	\def\xLegendArrowRight{-4.7}  
+   	\def\xLegendArrowLeft{-5.75}
+   	\def\xLegendArrowRight{-4.65}  
    	 	
-   	\def\yLegendDouble{0.95}
-   	\def\yLegendSnake{0.35}
+   	\def\yLegendDouble{0.83}
+   	\def\yLegendSnake{0.25}
    	
    	\draw[implies, black!70]  (\xLegendArrowLeft, \yLegendDouble) -- (\xLegendArrowRight, \yLegendDouble);    	   	
     \draw[arrSnake, black!70] (\xLegendArrowLeft, \yLegendSnake) -- (\xLegendArrowRight, \yLegendSnake);    	
