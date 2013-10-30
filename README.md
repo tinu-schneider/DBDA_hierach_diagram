@@ -10,7 +10,7 @@ The Code is written in LaTeX and TikZ and uses 'distrograms' (pictograms of the 
 ### Files
 * hierarch_diagram.tex: The diagram, it is written in LaTeX and TikZ
 * hierarch_diagram_framedBoxes.tex: The nodes are framed to show the possibilities of TikZ ![like in this example](https://raw.github.com/tinu-schneider/DBDA_hierach_diagram/master/framed_node.png)
-* plot_PNGs_of_MiniPlots.R: An R-script that draws the 'distrograms' of  different distributions (normal, gamma, beta). They are saved in `MiniPlots/`. 
+* plot_PNGs_of_MiniPlots.R: An R-script that draws the 'distrograms' of  different distributions (Normal, Gamma, Beta). They are saved in `MiniPlots/`. 
 
 ###  Thanks
 
