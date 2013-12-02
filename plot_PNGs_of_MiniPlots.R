@@ -8,7 +8,7 @@ Manager <- list(mainLineColor = "skyblue",
                 mainLineWidth = 6,
                 baseLineWidth = 2,
                 directory     = "./MiniPlots/",
-                miniPlots     = c("Normal", "Gamma", "Beta"),
+                miniPlots     = c("Normal", "Gamma", "Beta", "Dirichlet"),
                 margin        = c(0.5, 0.1, 0.1, 0.1),
                 dimPNG        = c(width = 180, height = 60)
          )
@@ -42,6 +42,15 @@ plotPNGsOfMiniPlots <- function() {
     x <- seq(0, 1, length = 502)
     x <- x[-1]  # without 0
     y <- dgamma(x, 2, 6)
+    .generateMiniPlot(x, y)  
+}
+
+.plotDirichletMiniPlot <- function() {
+    require(gtools)
+    x <- seq(0, 1, length = 502)
+    x <- x[-1]  # without 0
+    x <- x[-501] # without 1
+    y <- ddirichlet(cbind(x, 1-x), c(.8, .8))
     .generateMiniPlot(x, y)  
 }
 
