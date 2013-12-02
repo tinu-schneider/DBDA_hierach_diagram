@@ -8,7 +8,7 @@ Manager <- list(mainLineColor = "skyblue",
                 mainLineWidth = 6,
                 baseLineWidth = 2,
                 directory     = "./MiniPlots/",
-                miniPlots     = c("Normal", "Gamma", "Beta", "Dirichlet"),
+                miniPlots     = c("Normal", "Gamma", "Beta", "Dirichlet", "Binomial"),
                 margin        = c(0.5, 0.1, 0.1, 0.1),
                 dimPNG        = c(width = 180, height = 60)
          )
@@ -59,6 +59,14 @@ plotPNGsOfMiniPlots <- function() {
     x <- x[-c(1, 503)]  # without 0, 1
     y <- dbeta(x, 7, 4)
     .generateMiniPlot(x, y)  
+}
+
+.plotBinomialMiniPlot <- function() {
+    x <- seq(0, 9)
+    y <- dbinom(x, 10, .5)
+    xx <- rep(x, each=2)
+    yy <- rep(y, each=2)
+    .generateMiniPlot(xx[-20], yy[-1])  
 }
 
 
