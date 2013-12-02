@@ -8,7 +8,7 @@ Manager <- list(mainLineColor = "skyblue",
                 mainLineWidth = 6,
                 baseLineWidth = 2,
                 directory     = "./MiniPlots/",
-                miniPlots     = c("Normal", "Gamma", "Beta", "Dirichlet", "Binomial", "Uniform"),
+                miniPlots     = c("Normal", "Gamma", "Beta", "Dirichlet", "Binomial", "Uniform", "Student"),
                 margin        = c(0.5, 0.1, 0.1, 0.1),
                 dimPNG        = c(width = 180, height = 60)
          )
@@ -35,6 +35,13 @@ plotPNGsOfMiniPlots <- function() {
     xLim <- 3.5
     x <- seq(-xLim, xLim, length = 501)
     y <- dnorm(x, 0, 1)
+    .generateMiniPlot(x, y)   
+}
+
+.plotStudentMiniPlot <- function() {
+    xLim <- 3.5
+    x <- seq(-xLim, xLim, length = 501)
+    y <- dt(x, 1)
     .generateMiniPlot(x, y)   
 }
 
