@@ -69,11 +69,9 @@ plotPNGsOfMiniPlots <- function() {
 }
 
 .plotBinomialMiniPlot <- function() {
-    x <- seq(0, 9)
+    x <- 0:10
     y <- dbinom(x, 10, .5)
-    xx <- rep(x, each=2)
-    yy <- rep(y, each=2)
-    .generateMiniPlot(xx[-20], yy[-1])  
+    .generateMiniBarPlot(x, y)
 }
 
 .plotUniformMiniPlot <- function() {
@@ -89,6 +87,21 @@ plotPNGsOfMiniPlots <- function() {
         ylims <- c(yMin, max(y))
         plot(x, y, 
                  type = "l",
+                 axes = FALSE,
+                 ylim = ylims,
+                 col = Manager$mainLineColor,
+                 lwd = Manager$mainLineWidth
+             )
+        abline(h = yMin, lwd = Manager$baseLineWidth, xpd = TRUE)
+    par(op)
+}
+
+.generateMiniBarPlot <- function(x, y) {
+    op <- par(mar = Manager$margin)
+        yMin  <- -0.06
+        ylims <- c(yMin, max(y))
+        plot(x, y, 
+                 type = "h",
                  axes = FALSE,
                  ylim = ylims,
                  col = Manager$mainLineColor,
