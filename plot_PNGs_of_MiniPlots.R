@@ -8,7 +8,7 @@ Manager <- list(mainLineColor = "skyblue",
                 mainLineWidth = 6,
                 baseLineWidth = 2,
                 directory     = "./MiniPlots/",
-                miniPlots     = c("Normal", "Gamma", "Beta"),
+                miniPlots     = c("Normal", "Gamma", "Beta", "Dirichlet", "Binomial", "Uniform", "Student"),
                 margin        = c(0.5, 0.1, 0.1, 0.1),
                 dimPNG        = c(width = 180, height = 60)
          )
@@ -38,10 +38,26 @@ plotPNGsOfMiniPlots <- function() {
     .generateMiniPlot(x, y)   
 }
 
+.plotStudentMiniPlot <- function() {
+    xLim <- 3.5
+    x <- seq(-xLim, xLim, length = 501)
+    y <- dt(x, 1)
+    .generateMiniPlot(x, y)   
+}
+
 .plotGammaMiniPlot <- function() {
     x <- seq(0, 1, length = 502)
     x <- x[-1]  # without 0
     y <- dgamma(x, 2, 6)
+    .generateMiniPlot(x, y)  
+}
+
+.plotDirichletMiniPlot <- function() {
+    require(gtools)
+    x <- seq(0, 1, length = 502)
+    x <- x[-1]  # without 0
+    x <- x[-501] # without 1
+    y <- ddirichlet(cbind(x, 1-x), c(.8, .8))
     .generateMiniPlot(x, y)  
 }
 
@@ -52,6 +68,18 @@ plotPNGsOfMiniPlots <- function() {
     .generateMiniPlot(x, y)  
 }
 
+.plotBinomialMiniPlot <- function() {
+    x <- 0:10
+    y <- dbinom(x, 10, .5)
+    .generateMiniBarPlot(x, y)
+}
+
+.plotUniformMiniPlot <- function() {
+    x <- c(0, 0, 1, 1)
+    y <- c(0, .2, .2, 0) 
+    .generateMiniPlot(x, y)  
+}
+
 
 .generateMiniPlot <- function(x, y) {
     op <- par(mar = Manager$margin)
@@ -59,6 +87,21 @@ plotPNGsOfMiniPlots <- function() {
         ylims <- c(yMin, max(y))
         plot(x, y, 
                  type = "l",
+                 axes = FALSE,
+                 ylim = ylims,
+                 col = Manager$mainLineColor,
+                 lwd = Manager$mainLineWidth
+             )
+        abline(h = yMin, lwd = Manager$baseLineWidth, xpd = TRUE)
+    par(op)
+}
+
+.generateMiniBarPlot <- function(x, y) {
+    op <- par(mar = Manager$margin)
+        yMin  <- -0.06
+        ylims <- c(yMin, max(y))
+        plot(x, y, 
+                 type = "h",
                  axes = FALSE,
                  ylim = ylims,
                  col = Manager$mainLineColor,
